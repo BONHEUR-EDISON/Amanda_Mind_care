@@ -1,0 +1,136 @@
+{
+  
+  
+  "navbar": {
+    "services": "Services",
+    "about": "À propos",
+    "contact": "Contact",
+    "cta": "Prendre RDV"
+  },
+
+  "hero": {
+    "imageAlt": "Cabinet de psychologie privé",
+    "badge": "Cabinet privé • Consultation confidentielle",
+    "title": "Amanda Mind Care",
+    "subtitle1": "Votre espace de confiance pour un accompagnement psychologique",
+    "subtitle2": "discret, humain et sur-mesure",
+    "description": "Bénéficiez d’un accompagnement professionnel adapté à vos besoins, dans un cadre sécurisé, confidentiel et profondément humain.",
+    "ctaPrimary": "Prendre rendez-vous",
+    "ctaSecondary": "Découvrir nos services",
+    "trust1": "✔ 100% confidentiel",
+    "trust2": "✔ Approche personnalisée",
+    "trust3": "✔ Disponible en ligne"
+  },
+
+  
+  "services": {
+    "title": "Un accompagnement adapté à chaque besoin",
+    "subtitle": "Des solutions thérapeutiques pensées pour vous accompagner avec bienveillance, expertise et confidentialité.",
+    "items": [
+      {
+        "title": "Consultation individuelle",
+        "description": "Un accompagnement thérapeutique personnalisé pour mieux comprendre vos émotions et retrouver un équilibre durable."
+      },
+      {
+        "title": "Thérapie de couple",
+        "description": "Renforcez votre relation grâce à un espace d’écoute et de communication guidé par un professionnel."
+      },
+      {
+        "title": "Gestion du stress",
+        "description": "Apprenez des techniques concrètes pour réduire l’anxiété et retrouver sérénité au quotidien."
+      }
+    ],
+    "cta": "Prendre rendez-vous",
+    "more": "En savoir plus →"
+  },
+
+  "about": {
+    "title": "Votre psychologue de confiance à Kigali",
+    "paragraph1": "Chez Amanda Mind Care, nous croyons que chaque personne mérite un accompagnement sur-mesure, respectueux et confidentiel. Nous combinons expertise, écoute active et méthodes modernes pour vous aider à retrouver sérénité et équilibre.",
+    "paragraph2": "Notre approche centrée sur l’humain privilégie le respect de votre parcours, la confiance et la bienveillance, pour des résultats durables et authentiques.",
+    "cta": "Prendre rendez-vous"
+  },
+
+  "process": {
+    "title": "Votre accompagnement pas à pas",
+    "subtitle": "Chaque étape de votre parcours est pensée pour vous rassurer et vous guider vers un équilibre durable.",
+    "steps": [
+      {
+        "title": "Contact",
+        "description": "Vous nous contactez facilement pour poser vos questions ou prendre rendez-vous, dans un cadre totalement sécurisé et confidentiel."
+      },
+      {
+        "title": "Consultation",
+        "description": "Une rencontre individuelle, en personne ou en visio, pour évaluer vos besoins et définir un accompagnement sur-mesure."
+      },
+      {
+        "title": "Suivi",
+        "description": "Un suivi régulier et personnalisé pour consolider vos progrès et garantir votre équilibre émotionnel sur le long terme."
+      }
+    ]
+  },
+
+  
+  "testimonials": {
+    "title": "Témoignages",
+    "subtitle": "Découvrez les expériences de nos patients et l’impact positif de nos accompagnements.",
+    "items": [
+      {
+        "text": "Une écoute exceptionnelle et un réel accompagnement.",
+        "author": "Patient"
+      },
+      {
+        "text": "Professionnalisme et bienveillance remarquables.",
+        "author": "Patient"
+      },
+      {
+        "text": "Je me suis senti(e) compris(e) et soutenu(e) tout au long du processus.",
+        "author": "Patient"
+      },
+      {
+        "text": "Un cadre rassurant et apaisant, parfaitement adapté.",
+        "author": "Patient"
+      }
+    ]
+  },
+
+  
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Pour toute question ou prise de rendez-vous, contactez-nous via ce formulaire sécurisé.",
+    "fields": {
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "button": "Envoyer"
+    }
+  },
+
+  "footer": {
+    "description": "Cabinet international spécialisé en accompagnement psychologique haut de gamme, combinant expertise humaine et innovation digitale.",
+    "navigation": {
+      "title": "Navigation",
+      "items": ["Accueil", "Services", "À propos", "Contact"]
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "contact@amandamindcare.com",
+      "phone": "+250 700 000 000",
+      "location": "Kigali, Rwanda"
+    },
+    "social": {
+      "title": "Suivez-nous"
+    },
+    "hours": {
+      "title": "Horaires",
+      "week": "Lun - Ven : 09h - 18h",
+      "sat": "Sam : 10h - 14h"
+    },
+    "bottom": {
+      "rights": "© 2026 Amanda Mind Care — Tous droits réservés",
+      "privacy": "Confidentialité",
+      "terms": "Conditions"
+    }
+  }
+
+}

@@ -1,0 +1,134 @@
+{
+
+  "navbar": {
+    "services": "Serivisi",
+    "about": "Ibyacu",
+    "contact": "Twandikire",
+    "cta": "Fata gahunda"
+  },
+
+  "hero": {
+    "imageAlt": "Ivuriro ry'ubujyanama mu mitekerereze",
+    "badge": "Ivuriro ryihariye • Ibiganiro by'ibanga",
+    "title": "Amanda Mind Care",
+    "subtitle1": "Aho wizera kubona ubufasha mu mitekerereze",
+    "subtitle2": "mu ibanga, ubunyamwuga no ku giti cyawe",
+    "description": "Habona ubufasha bujyanye n'ibyo ukeneye, mu buryo bwizewe, bw’ibanga kandi bwubaha umuntu.",
+    "ctaPrimary": "Fata gahunda",
+    "ctaSecondary": "Reba serivisi zacu",
+    "trust1": "✔ Ibanga ryuzuye",
+    "trust2": "✔ Ubufasha bwihariye",
+    "trust3": "✔ Biboneka no kuri internet"
+  },
+
+  "services": {
+    "title": "Ubuvuzi bukwiranye n'ibyo ukeneye byose",
+    "subtitle": "Ubufasha bwo mu mutwe bugamije kugufasha mu buryo bw’ineza, ubuhanga n’ibanga rikomeye.",
+    "items": [
+      {
+        "title": "Inama ku muntu ku giti cye",
+        "description": "Ubufasha bwihariye bugufasha gusobanukirwa amarangamutima yawe no kugera ku buzima buzira umuze."
+      },
+      {
+        "title": "Ubuvuzi bw’abashakanye",
+        "description": "Gushimangira umubano wanyu binyuze mu biganiro byubaka biyobowe n’inzobere."
+      },
+      {
+        "title": "Gucunga stress",
+        "description": "Wiga uburyo bufatika bwo kugabanya ihangayikishijwe no kugarura ituze buri munsi."
+      }
+    ],
+    "cta": "Fata gahunda",
+    "more": "Soma byinshi →"
+  },
+
+  "about": {
+    "title": "Umuhanga mu buvuzi bwo mu mutwe wizewe i Kigali",
+    "paragraph1": "Amanda Mind Care yizera ko buri muntu akwiye ubufasha bwihariye, bwubaha kandi bubikwa ibanga. Dukoresha ubuhanga, kumva neza no uburyo bugezweho kugira ngo tugufashe kugarura ituze n’ubuzima bwiza.",
+    "paragraph2": "Uburyo bwacu bushyira umuntu imbere, bushimangira icyizere, ubumuntu no kubaha urugendo rwawe kugira ngo ugere ku bisubizo birambye.",
+    "cta": "Fata gahunda"
+  },
+
+
+  "process": {
+    "title": "Urugendo rwawe intambwe ku yindi",
+    "subtitle": "Buri ntambwe yateguwe kugirango iguhe ituze kandi ikuyobore kugera ku buzima buzira umuze.",
+    "steps": [
+      {
+        "title": "Guhamagara",
+        "description": "Utugeraho byoroshye kugira ngo ubaze ibibazo cyangwa usabe gahunda mu ibanga rikomeye kandi ryizewe."
+      },
+      {
+        "title": "Inama",
+        "description": "Ihuriro ryihariye, ku giti cyawe cyangwa kuri internet, ryo gusuzuma ibyo ukeneye no gutegura ubufasha bukubereye."
+      },
+      {
+        "title": "Gukurikirana",
+        "description": "Gukurikirana kenshi kandi byihariye kugira ngo ushimangire iterambere ryawe n’ituze ryawe ry’igihe kirekire."
+      }
+    ]
+  }, 
+  
+  "testimonials": {
+    "title": "Ibitekerezo by’abakiliya",
+    "subtitle": "Reba ubunararibonye bw’abakiliya bacu n’ingaruka nziza z’inkunga tubaha.",
+    "items": [
+      {
+        "text": "Kumva neza no gufasha ku rwego rwo hejuru.",
+        "author": "Umukiliya"
+      },
+      {
+        "text": "Ubunyamwuga n’ineza bidasanzwe.",
+        "author": "Umukiliya"
+      },
+      {
+        "text": "Numvaga nsobanukiwe kandi mfashijwe mu rugendo rwose.",
+        "author": "Umukiliya"
+      },
+      {
+        "text": "Ahantu hatuje kandi hatekanye cyane.",
+        "author": "Umukiliya"
+      }
+    ]
+  },
+  
+  "contact": {
+    "title": "Twandikire",
+    "subtitle": "Ku bibazo byose cyangwa gusaba gahunda, twandikire ukoresheje iyi fomu yizewe.",
+    "fields": {
+      "name": "Izina",
+      "email": "Imeyili",
+      "message": "Ubutumwa",
+      "button": "Ohereza"
+    }
+  },
+
+  
+  "footer": {
+    "description": "Ikigo mpuzamahanga gitanga ubuvuzi bwo mu mutwe bufite ireme ryo hejuru, gihuza ubuhanga n’ikoranabuhanga.",
+    "navigation": {
+      "title": "Ubuyobozi",
+      "items": ["Ahabanza", "Serivisi", "Ibyerekeye", "Twandikire"]
+    },
+    "contact": {
+      "title": "Twandikire",
+      "email": "contact@amandamindcare.com",
+      "phone": "+250 700 000 000",
+      "location": "Kigali, Rwanda"
+    },
+    "social": {
+      "title": "Dukurikire"
+    },
+    "hours": {
+      "title": "Igihe cyo gukora",
+      "week": "Kuwa mbere - Kuwa gatanu: 09h - 18h",
+      "sat": "Kuwa gatandatu: 10h - 14h"
+    },
+    "bottom": {
+      "rights": "© 2026 Amanda Mind Care — Uburenganzira bwose burabitswe",
+      "privacy": "Ibanga",
+      "terms": "Amategeko"
+    }
+  }
+
+}

@@ -1,0 +1,130 @@
+{
+  "navbar": {
+    "services": "Izinsizakalo",
+    "about": "Mayelana nathi",
+    "contact": "Xhumana",
+    "cta": "Beka isikhathi"
+  },
+
+  "hero": {
+    "imageAlt": "Ihhovisi elizimele lezengqondo",
+    "badge": "Ihhovisi elizimele • Ukwelashwa okuyimfihlo",
+    "title": "Amanda Mind Care",
+    "subtitle1": "Indawo yakho yokuthembela yokwesekwa kwengqondo",
+    "subtitle2": "okuyimfihlo, okunobuntu futhi okuqondene nawe",
+    "description": "Thola ukwesekwa kochwepheshe okuhambisana nezidingo zakho endaweni ephephile, eyimfihlo futhi enobuntu obujulile.",
+    "ctaPrimary": "Beka isikhathi",
+    "ctaSecondary": "Bona izinsizakalo zethu",
+    "trust1": "✔ Iyimfihlo ngokuphelele",
+    "trust2": "✔ Indlela eqondene nawe",
+    "trust3": "✔ Iyatholakala ku-inthanethi"
+  },
+
+  "services": {
+    "title": "Ukwesekwa okuhambisana nesidingo ngasinye",
+    "subtitle": "Izixazululo zokwelapha eziklanyelwe ukukweseka ngozwelo, ubuchwepheshe nobumfihlo.",
+    "items": [
+      {
+        "title": "Ukubonisana komuntu ngamunye",
+        "description": "Ukwesekwa okwenziwe ngokwezifiso ukuze uqonde imizwa yakho futhi ubuyisele ibhalansi eqhubekayo."
+      },
+      {
+        "title": "Ukwelashwa kwabashadile",
+        "description": "Qinisa ubudlelwano bakho ngendawo yokulalela nokuxhumana eqondiswa uchwepheshe."
+      },
+      {
+        "title": "Ukulawula ukucindezeleka",
+        "description": "Funda amasu okunciphisa ukukhathazeka nokubuyisa ukuthula empilweni yakho yansuku zonke."
+      }
+    ],
+    "cta": "Beka isikhathi",
+    "more": "Funda kabanzi →"
+  },
+
+  "about": {
+    "title": "Isazi sakho sokuthembeka eKigali",
+    "paragraph1": "Kwa-Amanda Mind Care sikholelwa ukuthi wonke umuntu ufanele ukwesekwa okuhloniphekile, okwenziwe ngokwezifiso futhi okuyimfihlo. Sihlanganisa ulwazi, ukulalela nokwelashwa kwesimanje.",
+    "paragraph2": "Indlela yethu igxile kumuntu, ihlonipha indaba yakho, ithemba kanye nozwelo ukuze kuzuze imiphumela eqhubekayo.",
+    "cta": "Beka isikhathi"
+  },
+
+  "process": {
+    "title": "Uhambo lwakho lokwesekwa isinyathelo ngesinyathelo",
+    "subtitle": "Isinyathelo ngasinye siklanyelwe ukukududuza futhi sikuholele ekulinganeni okuhlala isikhathi eside.",
+    "steps": [
+      {
+        "title": "Ukuxhumana",
+        "description": "Uxhumana nathi kalula ukuze ubuze noma ubeke isikhathi endaweni ephephile neyimfihlo."
+      },
+      {
+        "title": "Ukubonisana",
+        "description": "Isikhathi somuntu ngamunye, ubuso nobuso noma ku-inthanethi, ukuhlola izidingo zakho."
+      },
+      {
+        "title": "Ukulandelela",
+        "description": "Ukulandelela okuqhubekayo ukuze kuqiniswe intuthuko yakho nokugcina ibhalansi yakho yengqondo."
+      }
+    ]
+  },
+
+  "testimonials": {
+    "title": "Ubufakazi",
+    "subtitle": "Bona okuhlangenwe nakho kweziguli zethu nomthelela omuhle wokwesekwa kwethu.",
+    "items": [
+      {
+        "text": "Ukulalela okuhle kakhulu nokwesekwa kwangempela.",
+        "author": "Isiguli"
+      },
+      {
+        "text": "Ubuchwepheshe nobumnene obumangalisayo.",
+        "author": "Isiguli"
+      },
+      {
+        "text": "Ngazizwa ngiqondwa futhi ngisekelwa kuyo yonke inqubo.",
+        "author": "Isiguli"
+      },
+      {
+        "text": "Indawo ephephile futhi ethokomele kakhulu.",
+        "author": "Isiguli"
+      }
+    ]
+  },
+
+  "contact": {
+    "title": "Xhumana",
+    "subtitle": "Ukuze ubuze noma ubeke isikhathi, sebenzisa le fomu ephephile.",
+    "fields": {
+      "name": "Igama",
+      "email": "I-imeyili",
+      "message": "Umlayezo",
+      "button": "Thumela"
+    }
+  },
+
+  "footer": {
+    "description": "Ihhovisi lamazwe ngamazwe elisebenza ngokwesekwa kwengqondo okuseqophelweni eliphezulu, lihlanganisa ulwazi lomuntu nobuchwepheshe besimanje.",
+    "navigation": {
+      "title": "Ukuzulazula",
+      "items": ["Ikhaya", "Izinsizakalo", "Mayelana", "Xhumana"]
+    },
+    "contact": {
+      "title": "Xhumana",
+      "email": "contact@amandamindcare.com",
+      "phone": "+250 700 000 000",
+      "location": "Kigali, Rwanda"
+    },
+    "social": {
+      "title": "Silandele"
+    },
+    "hours": {
+      "title": "Amahora",
+      "week": "Msombuluko - NgoLwesihlanu: 09h - 18h",
+      "sat": "Mgqibelo: 10h - 14h"
+    },
+    "bottom": {
+      "rights": "© 2026 Amanda Mind Care — Wonke amalungelo agodliwe",
+      "privacy": "Ubumfihlo",
+      "terms": "Imigomo"
+    }
+  }
+}

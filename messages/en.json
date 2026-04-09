@@ -1,0 +1,136 @@
+{
+  
+  "navbar": {
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "cta": "Book appointment"
+  },
+  "hero": {
+    "imageAlt": "Private psychology clinic",
+    "badge": "Private practice • Confidential consultation",
+    "title": "Amanda Mind Care",
+    "subtitle1": "Your trusted space for psychological support",
+    "subtitle2": "discreet, human and personalized",
+    "description": "Benefit from professional support tailored to your needs, in a secure, confidential and deeply human environment.",
+    "ctaPrimary": "Book an appointment",
+    "ctaSecondary": "Discover our services",
+    "trust1": "✔ 100% confidential",
+    "trust2": "✔ Personalized approach",
+    "trust3": "✔ Available online"
+  },
+
+  "services": {
+    "title": "Care tailored to every need",
+    "subtitle": "Therapeutic solutions designed to support you with compassion, expertise, and confidentiality.",
+    "items": [
+      {
+        "title": "Individual consultation",
+        "description": "Personalized therapy sessions to better understand your emotions and achieve lasting balance."
+      },
+      {
+        "title": "Couples therapy",
+        "description": "Strengthen your relationship through guided communication and professional support."
+      },
+      {
+        "title": "Stress management",
+        "description": "Learn practical techniques to reduce anxiety and regain daily calm and clarity."
+      }
+    ],
+    "cta": "Book an appointment",
+    "more": "Learn more →"
+  },
+
+  
+  "about": {
+    "title": "Your trusted psychologist in Kigali",
+    "paragraph1": "At Amanda Mind Care, we believe everyone deserves personalized, respectful, and confidential support. We combine expertise, active listening, and modern methods to help you regain balance and peace of mind.",
+    "paragraph2": "Our human-centered approach emphasizes trust, empathy, and respect for your journey to ensure lasting and meaningful results.",
+    "cta": "Book an appointment"
+  },
+
+  "process": {
+    "title": "Your step-by-step support",
+    "subtitle": "Each stage of your journey is designed to reassure you and guide you toward lasting balance.",
+    "steps": [
+      {
+        "title": "Contact",
+        "description": "Reach out easily to ask questions or book an appointment in a secure and confidential environment."
+      },
+      {
+        "title": "Consultation",
+        "description": "A one-on-one session, in person or online, to assess your needs and define a personalized care plan."
+      },
+      {
+        "title": "Follow-up",
+        "description": "Regular and personalized follow-up to strengthen your progress and ensure long-term emotional balance."
+      }
+    ]
+  },
+
+  
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "Discover our patients' experiences and the positive impact of our care.",
+    "items": [
+      {
+        "text": "Exceptional listening and genuine support.",
+        "author": "Patient"
+      },
+      {
+        "text": "Remarkable professionalism and kindness.",
+        "author": "Patient"
+      },
+      {
+        "text": "I felt understood and supported throughout the process.",
+        "author": "Patient"
+      },
+      {
+        "text": "A safe and calming environment, perfectly adapted.",
+        "author": "Patient"
+      }
+    ]
+  },
+
+  "contact": {
+    "title": "Contact",
+    "subtitle": "For any questions or appointment requests, contact us through this secure form.",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "button": "Send"
+    }
+  },
+
+  "footer": {
+    "description": "International clinic specializing in high-end psychological care, combining human expertise and digital innovation.",
+    "navigation": {
+      "title": "Navigation",
+      "items": ["Home", "Services", "About", "Contact"]
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "contact@amandamindcare.com",
+      "phone": "+250 700 000 000",
+      "location": "Kigali, Rwanda"
+    },
+    "social": {
+      "title": "Follow us"
+    },
+    "hours": {
+      "title": "Opening hours",
+      "week": "Mon - Fri: 09am - 6pm",
+      "sat": "Sat: 10am - 2pm"
+    },
+    "bottom": {
+      "rights": "© 2026 Amanda Mind Care — All rights reserved",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  }
+
+}
+
+
+
