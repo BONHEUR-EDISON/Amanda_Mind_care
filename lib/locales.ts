@@ -5,5 +5,6 @@ export const locales = [
   { code: 'rw', label: 'Kinyarwanda', flag: '🇷🇼' },
   { code: 'es', label: 'Español', flag: '🇪🇸' },
   { code: 'zu', label: 'Zulu', flag: '🇿🇦' },
-  { code: 'cn', label: '中文', flag: '🇨🇳' }
+  { code: 'cn', label: '中文', flag: '🇨🇳' },
+  { code: 'ar', label: 'العربية', flag: '🇸🇦' }
 ];
