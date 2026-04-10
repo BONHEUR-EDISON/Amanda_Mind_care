@@ -1,230 +1,158 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslations } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from '@/hooks/useTheme';
-import { locales } from '@/lib/locales';
-import Image from 'next/image';
+import {
+  Calendar,
+  MessageCircle,
+  Phone
+} from 'lucide-react';
+import { useEffect, useState } from 'react';
 
-export default function Navbar() {
-  const [mounted, setMounted] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+export default function RightNav() {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [visible, setVisible] = useState(true);
+  const [scrollY, setScrollY] = useState(0);
 
-  const t = useTranslations('navbar');
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const { theme, toggleTheme } = useTheme();
-  const isDark = theme === 'dark';
-
-  useEffect(() => setMounted(true), []);
-
-  const currentLocale = pathname.split('/')[1] || 'fr';
-
-  const currentLang =
-    locales.find(l => l.code === currentLocale) || locales[0];
-
-  const changeLanguage = (locale: string) => {
-    const segments = pathname.split('/');
-    segments[1] = locale;
-    router.push(segments.join('/'));
-    localStorage.setItem('lang', locale);
-  };
-
+  // 📊 SCROLL TRACKING
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+      setVisible(window.scrollY > 100);
+    };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!mounted) return null;
+  // 🧠 CTA INTELLIGENT
+  const getMainAction = () => {
+    if (scrollY < 500) return 'Découvrir';
+    if (scrollY < 1200) return 'Réserver';
+    return 'Contacter';
+  };
 
-  const navItems = [
-    { key: 'services', href: '#services' },
-    { key: 'about', href: '#about' },
-    { key: 'contact', href: '#contact' },
+  const mainLabel = getMainAction();
+
+  const actions = [
+    {
+      icon: Calendar,
+      label: mainLabel,
+      color: 'from-[#6B9AC4] to-cyan-400',
+      primary: true,
+      onClick: () => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    },
+    {
+      icon: MessageCircle,
+      label: 'WhatsApp',
+      color: 'from-green-500 to-emerald-400',
+      badge: true,
+      onClick: () => {
+        window.open('https://wa.me/250XXXXXXXXX', '_blank');
+      }
+    },
+    {
+      icon: Phone,
+      label: 'Appeler',
+      color: 'from-purple-500 to-pink-400',
+      onClick: () => {
+        window.location.href = 'tel:+250XXXXXXXXX';
+      }
+    }
   ];
 
   return (
-    <header
-      className={`
-        fixed top-0 w-full z-[100]
-        transition-all duration-300
-
-        /* 🔥 MOBILE = SOLIDE / DESKTOP = GLASS */
-        bg-white dark:bg-black
-        md:bg-white/80 md:dark:bg-black/70
-
-        ${scrolled ? 'shadow-md border-b border-black/10 dark:border-white/10 backdrop-blur-xl' : ''}
-      `}
-    >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-
-        {/* LOGO */}
-        <a href="#" className="flex items-center gap-3">
-          <div className="relative w-10 h-10">
-            <Image
-              src="/images/logo.png"
-              alt="Aurion Mental Health Clinic"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-
-          <span className="font-serif text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
-            Aurion Mental Health Clinic
-          </span>
-        </a>
-
-        {/* NAV DESKTOP */}
-        <nav className="hidden md:flex items-center gap-8 text-sm">
-          {navItems.map(item => (
-            <a
-              key={item.key}
-              href={item.href}
-              className="relative text-gray-800 dark:text-white hover:text-cyan-500 transition"
-            >
-              {t(item.key)}
-
-              <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all hover:w-full" />
-            </a>
-          ))}
-        </nav>
-
-        {/* ACTIONS */}
-        <div className="flex items-center gap-3">
-
-          {/* THEME */}
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full bg-black/5 dark:bg-white/10 hover:scale-110 transition"
-          >
-            {isDark ? (
-              <Sun size={18} className="text-yellow-400" />
-            ) : (
-              <Moon size={18} className="text-gray-800" />
-            )}
-          </button>
-
-          {/* LANGUAGE DESKTOP */}
-          <div className="relative hidden md:block">
-            <button
-              onClick={() => setLangOpen(!langOpen)}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 dark:bg-white/10 text-gray-800 dark:text-white"
-            >
-              <span>{currentLang.flag}</span>
-              <span>{currentLang.code.toUpperCase()}</span>
-            </button>
-
-            <AnimatePresence>
-              {langOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute right-0 mt-3 w-52 bg-white dark:bg-black border border-black/10 dark:border-white/10 rounded-xl shadow-xl"
-                >
-                  {locales.map(l => (
-                    <button
-                      key={l.code}
-                      onClick={() => {
-                        changeLanguage(l.code);
-                        setLangOpen(false);
-                      }}
-                      className="w-full flex items-center gap-3 px-4 py-3 hover:bg-black/5 dark:hover:bg-white/10"
-                    >
-                      <span>{l.flag}</span>
-                      <span>{l.label}</span>
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* CTA */}
-          <button className="hidden md:block px-5 py-2 rounded-full bg-gradient-to-r from-[#6B9AC4] to-cyan-400 text-white shadow-lg hover:scale-105 transition">
-            {t('cta')}
-          </button>
-
-          {/* MOBILE BTN */}
-          <button
-            className="md:hidden text-2xl text-gray-900 dark:text-white"
-            onClick={() => setOpen(true)}
-          >
-            ☰
-          </button>
-
-        </div>
-      </div>
-
-      {/* MOBILE MENU */}
+    <>
+      {/* DESKTOP */}
       <AnimatePresence>
-        {open && (
+        {visible && (
           <motion.div
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[200] flex flex-col p-8 bg-black text-white"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            className="hidden md:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 flex-col gap-4"
           >
-            {/* HEADER */}
-            <div className="flex justify-between items-center mb-10">
-              <span className="font-serif text-lg">
-                Aurion Mental Health Clinic
-              </span>
+            {actions.map((action, index) => {
+              const Icon = action.icon;
 
-              <button onClick={() => setOpen(false)} className="text-2xl">
-                ✕
-              </button>
-            </div>
-
-            {/* NAV */}
-            <div className="flex flex-col gap-6">
-              {navItems.map(item => (
-                <a
-                  key={item.key}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="text-lg text-white/70 hover:text-white transition"
+              return (
+                <motion.div
+                  key={index}
+                  onHoverStart={() => setHovered(index)}
+                  onHoverEnd={() => setHovered(null)}
+                  onClick={action.onClick}
+                  className="cursor-pointer"
                 >
-                  {t(item.key)}
-                </a>
-              ))}
-            </div>
+                  <motion.div
+                    initial={{ width: 55 }}
+                    animate={{ width: hovered === index ? 180 : 55 }}
+                    transition={{ type: 'spring', stiffness: 200 }}
+                    className={`relative flex items-center overflow-hidden rounded-full
+                      backdrop-blur-2xl
+                      ${action.primary
+                        ? 'bg-white dark:bg-black shadow-2xl scale-105'
+                        : 'bg-white/70 dark:bg-black/70 shadow-lg'}
+                    `}
+                  >
+                    {/* ICON */}
+                    <div className={`min-w-[55px] h-[55px] flex items-center justify-center
+                      bg-gradient-to-r ${action.color} text-white`}>
+                      <Icon size={20} />
+                    </div>
 
-            {/* LANG MOBILE */}
-            <div className="mt-12 space-y-3">
-              {locales.map(l => (
-                <button
-                  key={l.code}
-                  onClick={() => {
-                    changeLanguage(l.code);
-                    setOpen(false);
-                  }}
-                  className="flex items-center gap-3 text-white/70 hover:text-white transition"
-                >
-                  <span>{l.flag}</span>
-                  <span>{l.label}</span>
-                </button>
-              ))}
-            </div>
+                    {/* TEXT */}
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: hovered === index ? 1 : 0 }}
+                      className="px-4 text-sm font-medium text-gray-800 dark:text-white"
+                    >
+                      {action.label}
+                    </motion.span>
 
-            {/* CTA */}
-            <div className="mt-auto">
-              <button className="w-full py-3 rounded-full bg-gradient-to-r from-[#6B9AC4] to-[#A8D5BA] text-white">
-                {t('cta')}
-              </button>
-            </div>
+                    {/* BADGE */}
+                    {action.badge && (
+                      <span className="absolute top-1 right-1 w-3 h-3 bg-green-400 rounded-full animate-ping" />
+                    )}
+                  </motion.div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+
+      {/* MOBILE */}
+      <div className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
+
+        <div className="flex items-center gap-4 px-4 py-3 rounded-full
+          backdrop-blur-xl bg-white/90 dark:bg-black/90 shadow-xl border">
+
+          {actions.map((action, index) => {
+            const Icon = action.icon;
+
+            return (
+              <button
+                key={index}
+                onClick={action.onClick}
+                className="relative flex flex-col items-center text-xs"
+              >
+                <div className={`p-3 rounded-full bg-gradient-to-r ${action.color} text-white`}>
+                  <Icon size={18} />
+                </div>
+
+                {action.badge && (
+                  <span className="absolute top-1 right-2 w-2 h-2 bg-green-400 rounded-full animate-ping" />
+                )}
+
+                <span className="mt-1 text-gray-700 dark:text-white">
+                  {action.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 }

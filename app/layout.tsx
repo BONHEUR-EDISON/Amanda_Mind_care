@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Amanda Mind Care - Espace Privé de Psychologie",
+  title: "Aurion Mental Health Clinic - Espace Privé de Psychologie",
   description: "Un accompagnement confidentiel et professionnel pour votre équilibre mental",
 };
 
