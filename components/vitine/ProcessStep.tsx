@@ -1,4 +1,5 @@
 'use client';
+
 import { motion } from "framer-motion";
 import { CheckCircle, Phone, Heart } from "lucide-react";
 
@@ -10,22 +11,60 @@ interface Props {
 
 const icons = [Phone, CheckCircle, Heart];
 
-export default function ProcessStep({ number, title, description }: Props) {
+export default function ProcessStep({
+  number,
+  title,
+  description,
+}: Props) {
   const Icon = icons[number - 1] || Phone;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      initial={{ opacity: 0, y: 40, scale: 0.97 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="bg-white/80 backdrop-blur-xl p-10 rounded-3xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-transform duration-300"
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      whileHover={{
+        y: -6,
+        transition: { duration: 0.2 },
+      }}
+      className="
+        relative group
+        bg-white/70 backdrop-blur-xl
+        border border-white/40
+        rounded-3xl
+        p-8 md:p-10
+        shadow-[0_10px_40px_rgba(0,0,0,0.06)]
+        overflow-hidden
+      "
     >
-      <div className="w-16 h-16 mx-auto mb-6 bg-[#6B9AC4] text-white rounded-full flex items-center justify-center">
-        <Icon className="w-8 h-8" />
+      {/* glow hover */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500">
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#6B9AC4]/20 blur-3xl rounded-full" />
       </div>
-      <h3 className="text-2xl font-serif mb-3 text-[#4A4A4A]">{title}</h3>
-      <p className="text-[#4A4A4A]/80 text-md leading-relaxed">{description}</p>
+
+      {/* ICON CIRCLE */}
+      <div className="w-14 h-14 mx-auto mb-6 rounded-2xl bg-[#6B9AC4]/10 flex items-center justify-center">
+        <Icon className="w-6 h-6 text-[#6B9AC4]" />
+      </div>
+
+      {/* STEP NUMBER */}
+      <div className="text-center text-xs text-[#6B9AC4] font-medium mb-2">
+        STEP {number}
+      </div>
+
+      {/* TITLE */}
+      <h3 className="text-xl md:text-2xl font-serif text-[#2f2b28] text-center mb-3">
+        {title}
+      </h3>
+
+      {/* DESCRIPTION */}
+      <p className="text-[#4A4A4A]/80 text-sm md:text-base leading-relaxed text-center">
+        {description}
+      </p>
     </motion.div>
   );
 }

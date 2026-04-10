@@ -7,7 +7,8 @@ const messagesMap = {
   en: () => import('../../messages/en.json').then(m => m.default),
   rw: () => import('../../messages/rw.json').then(m => m.default),
   es: () => import('../../messages/es.json').then(m => m.default),
-  zu: () => import('../../messages/zu.json').then(m => m.default)
+  zu: () => import('../../messages/zu.json').then(m => m.default),
+  cn: () => import('../../messages/cn.json').then(m => m.default),
 };
 
 export default async function LocaleLayout({

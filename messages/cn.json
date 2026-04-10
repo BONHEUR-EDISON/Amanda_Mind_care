@@ -1,0 +1,130 @@
+{
+  "navbar": {
+    "services": "服务",
+    "about": "关于我们",
+    "contact": "联系",
+    "cta": "预约咨询"
+  },
+
+  "hero": {
+    "imageAlt": "私人心理诊所",
+    "badge": "私人诊所 • 保密咨询",
+    "title": "Amanda Mind Care",
+    "subtitle1": "值得信赖的心理支持空间",
+    "subtitle2": "私密、人性化且个性化",
+    "description": "在安全、保密且充满人文关怀的环境中，为您提供量身定制的专业心理支持。",
+    "ctaPrimary": "预约咨询",
+    "ctaSecondary": "了解我们的服务",
+    "trust1": "✔ 100% 保密",
+    "trust2": "✔ 个性化方法",
+    "trust3": "✔ 在线可用"
+  },
+
+  "services": {
+    "title": "满足每一种需求的心理支持",
+    "subtitle": "以关怀、专业与保密为核心，为您提供量身定制的治疗方案。",
+    "items": [
+      {
+        "title": "个人咨询",
+        "description": "个性化心理治疗，帮助您更好地理解情绪并恢复长期平衡。"
+      },
+      {
+        "title": "伴侣治疗",
+        "description": "在专业指导下，通过沟通与倾听改善和强化关系。"
+      },
+      {
+        "title": "压力管理",
+        "description": "学习实用技巧，有效减轻焦虑，恢复日常平静与专注。"
+      }
+    ],
+    "cta": "预约咨询",
+    "more": "了解更多 →"
+  },
+
+  "about": {
+    "title": "您值得信赖的心理专家",
+    "paragraph1": "在 Amanda Mind Care，我们相信每个人都值得获得尊重、保密且个性化的心理支持。我们结合专业知识、积极倾听与现代方法，帮助您恢复内心平衡与宁静。",
+    "paragraph2": "我们以人为本的方法强调信任、同理心与尊重您的经历，以实现持久而真实的改善。",
+    "cta": "预约咨询"
+  },
+
+  "process": {
+    "title": "您的逐步支持流程",
+    "subtitle": "每一步都旨在让您安心，并引导您走向持久的心理平衡。",
+    "steps": [
+      {
+        "title": "联系",
+        "description": "您可以轻松联系我们咨询问题或预约，在完全安全和保密的环境中进行。"
+      },
+      {
+        "title": "咨询",
+        "description": "一对一面对面或线上会谈，以评估您的需求并制定个性化方案。"
+      },
+      {
+        "title": "跟进",
+        "description": "定期个性化跟进，以巩固进展并确保长期情绪稳定。"
+      }
+    ]
+  },
+
+  "testimonials": {
+    "title": "患者评价",
+    "subtitle": "了解我们的患者体验以及治疗带来的积极影响。",
+    "items": [
+      {
+        "text": "非常出色的倾听与真正的支持。",
+        "author": "患者"
+      },
+      {
+        "text": "专业且充满关怀。",
+        "author": "患者"
+      },
+      {
+        "text": "整个过程中我都感受到被理解与支持。",
+        "author": "患者"
+      },
+      {
+        "text": "安全、舒适且令人安心的环境。",
+        "author": "患者"
+      }
+    ]
+  },
+
+  "contact": {
+    "title": "联系",
+    "subtitle": "如有任何问题或预约需求，请通过此安全表单联系我们。",
+    "fields": {
+      "name": "姓名",
+      "email": "邮箱",
+      "message": "信息",
+      "button": "发送"
+    }
+  },
+
+  "footer": {
+    "description": "国际高端心理咨询机构，融合人文关怀与数字创新。",
+    "navigation": {
+      "title": "导航",
+      "items": ["首页", "服务", "关于我们", "联系"]
+    },
+    "contact": {
+      "title": "联系",
+      "email": "contact@amandamindcare.com",
+     "phone": "+230 59041963",
+      "location": "卢旺达基加利"
+    },
+    "social": {
+      "title": "关注我们"
+    },
+    "hours": {
+      "title": "营业时间",
+      "week": "周一 - 周五：09:00 - 18:00",
+      "sat": "周六：10:00 - 14:00"
+    },
+    "bottom": {
+      "rights": "© 2026 Amanda Mind Care — 版权所有",
+      "privacy": "隐私政策",
+      "terms": "条款"
+    }
+  }
+}
