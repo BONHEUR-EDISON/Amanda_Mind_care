@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
 
 export default function Page() {
-  redirect('/fr'); // langue par défaut
+  redirect('/en'); // langue par défaut
 }

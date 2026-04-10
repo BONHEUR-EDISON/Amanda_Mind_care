@@ -10,6 +10,7 @@ import { locales } from '@/lib/locales';
 import Image from 'next/image';
 
 export default function Navbar() {
+  const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -21,6 +22,8 @@ export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
 
+  useEffect(() => setMounted(true), []);
+
   const currentLocale = pathname.split('/')[1] || 'fr';
 
   const currentLang =
@@ -29,7 +32,6 @@ export default function Navbar() {
   const changeLanguage = (locale: string) => {
     const segments = pathname.split('/');
     segments[1] = locale;
-
     router.push(segments.join('/'));
     localStorage.setItem('lang', locale);
   };
@@ -39,6 +41,8 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  if (!mounted) return null;
 
   const navItems = [
     { key: 'services', href: '#services' },
@@ -51,11 +55,12 @@ export default function Navbar() {
       className={`
         fixed top-0 w-full z-[100]
         transition-all duration-300
-        ${
-          scrolled
-            ? 'bg-white/95 dark:bg-black/90 backdrop-blur-xl shadow-md border-b border-black/10 dark:border-white/10'
-            : 'bg-white/80 dark:bg-black/70 backdrop-blur-md'
-        }
+
+        /* 🔥 MOBILE = SOLIDE / DESKTOP = GLASS */
+        bg-white dark:bg-black
+        md:bg-white/80 md:dark:bg-black/70
+
+        ${scrolled ? 'shadow-md border-b border-black/10 dark:border-white/10 backdrop-blur-xl' : ''}
       `}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
@@ -68,6 +73,7 @@ export default function Navbar() {
               alt="Aurion Mental Health Clinic"
               fill
               className="object-contain"
+              priority
             />
           </div>
 
@@ -85,6 +91,7 @@ export default function Navbar() {
               className="relative text-gray-800 dark:text-white hover:text-cyan-500 transition"
             >
               {t(item.key)}
+
               <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-cyan-400 transition-all hover:w-full" />
             </a>
           ))}
@@ -164,6 +171,7 @@ export default function Navbar() {
             initial={{ x: '-100%' }}
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
+            transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[200] flex flex-col p-8 bg-black text-white"
           >
             {/* HEADER */}

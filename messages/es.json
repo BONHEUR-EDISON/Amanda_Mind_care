@@ -9,7 +9,7 @@
   "hero": {
     "imageAlt": "Consultorio privado de psicología",
     "badge": "Consulta privada • Atención confidencial",
-    "title": "Amanda Mind Care",
+    "title": "Aurion Mental Health Clinic",
     "subtitle1": "Tu espacio de confianza para apoyo psicológico",
     "subtitle2": "discreto, humano y personalizado",
     "description": "Recibe un acompañamiento profesional adaptado a tus necesidades, en un entorno seguro, confidencial y profundamente humano.",
@@ -43,7 +43,7 @@
 
   "about": {
     "title": "Tu psicólogo de confianza",
-    "paragraph1": "En Amanda Mind Care creemos que cada persona merece un acompañamiento personalizado, respetuoso y confidencial. Combinamos experiencia, escucha activa y métodos modernos para ayudarte a recuperar la serenidad y el equilibrio.",
+    "paragraph1": "En Aurion Mental Health Clinic creemos que cada persona merece un acompañamiento personalizado, respetuoso y confidencial. Combinamos experiencia, escucha activa y métodos modernos para ayudarte a recuperar la serenidad y el equilibrio.",
     "paragraph2": "Nuestro enfoque centrado en el ser humano prioriza tu historia, la confianza y la empatía para lograr resultados duraderos y auténticos.",
     "cta": "Reservar cita"
   },
@@ -122,7 +122,7 @@
       "sat": "Sáb: 10h - 14h"
     },
     "bottom": {
-      "rights": "© 2026 Amanda Mind Care — Todos los derechos reservados",
+      "rights": "© 2026 Aurion Mental Health Clinic — Todos los derechos reservados",
       "privacy": "Privacidad",
       "terms": "Condiciones"
     }

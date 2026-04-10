@@ -9,7 +9,7 @@
   "hero": {
     "imageAlt": "Ihhovisi elizimele lezengqondo",
     "badge": "Ihhovisi elizimele • Ukwelashwa okuyimfihlo",
-    "title": "Amanda Mind Care",
+    "title": "Aurion Mental Health Clinic",
     "subtitle1": "Indawo yakho yokuthembela yokwesekwa kwengqondo",
     "subtitle2": "okuyimfihlo, okunobuntu futhi okuqondene nawe",
     "description": "Thola ukwesekwa kochwepheshe okuhambisana nezidingo zakho endaweni ephephile, eyimfihlo futhi enobuntu obujulile.",
@@ -43,7 +43,7 @@
 
   "about": {
     "title": "Isazi sakho sokuthembeka ",
-    "paragraph1": "Kwa-Amanda Mind Care sikholelwa ukuthi wonke umuntu ufanele ukwesekwa okuhloniphekile, okwenziwe ngokwezifiso futhi okuyimfihlo. Sihlanganisa ulwazi, ukulalela nokwelashwa kwesimanje.",
+    "paragraph1": "Kwa-Aurion Mental Health Clinic sikholelwa ukuthi wonke umuntu ufanele ukwesekwa okuhloniphekile, okwenziwe ngokwezifiso futhi okuyimfihlo. Sihlanganisa ulwazi, ukulalela nokwelashwa kwesimanje.",
     "paragraph2": "Indlela yethu igxile kumuntu, ihlonipha indaba yakho, ithemba kanye nozwelo ukuze kuzuze imiphumela eqhubekayo.",
     "cta": "Beka isikhathi"
   },
@@ -122,7 +122,7 @@
       "sat": "Mgqibelo: 10h - 14h"
     },
     "bottom": {
-      "rights": "© 2026 Amanda Mind Care — Wonke amalungelo agodliwe",
+      "rights": "© 2026 Aurion Mental Health Clinic — Wonke amalungelo agodliwe",
       "privacy": "Ubumfihlo",
       "terms": "Imigomo"
     }

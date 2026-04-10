@@ -1,5 +1,6 @@
 'use client';
 import Navbar from "@/components/vitine/Navbar";
+import RightNav from "@/components/vitine/RightNav"
 import Hero from "@/components/vitine/Hero";
 import ServicesSection from "@/components/vitine/ServicesSection";
 import AboutSection from "@/components/vitine/AboutSection";
@@ -12,6 +13,7 @@ export default function Home() {
   return (
     <main className="bg-[#f8f6f3] text-[#2d2a26]">
       <Navbar />
+      <RightNav />
       <Hero />
       <ServicesSection />
       <AboutSection />

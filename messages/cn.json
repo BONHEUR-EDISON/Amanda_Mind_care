@@ -9,7 +9,7 @@
   "hero": {
     "imageAlt": "私人心理诊所",
     "badge": "私人诊所 • 保密咨询",
-    "title": "Amanda Mind Care",
+    "title": "Aurion Mental Health Clinic",
     "subtitle1": "值得信赖的心理支持空间",
     "subtitle2": "私密、人性化且个性化",
     "description": "在安全、保密且充满人文关怀的环境中，为您提供量身定制的专业心理支持。",
@@ -43,7 +43,7 @@
 
   "about": {
     "title": "您值得信赖的心理专家",
-    "paragraph1": "在 Amanda Mind Care，我们相信每个人都值得获得尊重、保密且个性化的心理支持。我们结合专业知识、积极倾听与现代方法，帮助您恢复内心平衡与宁静。",
+    "paragraph1": "在 Aurion Mental Health Clinic，我们相信每个人都值得获得尊重、保密且个性化的心理支持。我们结合专业知识、积极倾听与现代方法，帮助您恢复内心平衡与宁静。",
     "paragraph2": "我们以人为本的方法强调信任、同理心与尊重您的经历，以实现持久而真实的改善。",
     "cta": "预约咨询"
   },
@@ -122,7 +122,7 @@
       "sat": "周六：10:00 - 14:00"
     },
     "bottom": {
-      "rights": "© 2026 Amanda Mind Care — 版权所有",
+      "rights": "© 2026 Aurion Mental Health Clinic — 版权所有",
       "privacy": "隐私政策",
       "terms": "条款"
     }

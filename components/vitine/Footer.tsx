@@ -23,7 +23,7 @@ export default function Footer() {
         {/* BRAND */}
         <div>
           <h3 className="text-[#0B0F14] font-serif text-3xl mb-4 tracking-wide">
-            Amanda Mind Care
+            Aurion Mental Health Clinic
           </h3>
 
           <p className="text-gray-600 text-sm leading-relaxed max-w-sm">
