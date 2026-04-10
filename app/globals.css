@@ -38,3 +38,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+html[data-theme='dark'] {
+  --bg: #0f172a;
+  --text: #f8fafc;
+}
+
+html[data-theme='light'] {
+  --bg: #F5F1EB;
+  --text: #2f2b28;
+}

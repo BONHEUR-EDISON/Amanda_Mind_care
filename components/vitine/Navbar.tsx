@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from '@/hooks/useTheme';
 import { locales } from '@/lib/locales';
-
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -16,16 +17,20 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
+  const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
+
   const currentLocale = pathname.split('/')[1] || 'fr';
+
+  const currentLang =
+    locales.find(l => l.code === currentLocale) || locales[0];
 
   const changeLanguage = (locale: string) => {
     const segments = pathname.split('/');
     segments[1] = locale;
 
-    const newPath = segments.join('/');
+    router.push(segments.join('/'));
     localStorage.setItem('lang', locale);
-
-    router.push(newPath);
   };
 
   useEffect(() => {
@@ -40,25 +45,18 @@ export default function Navbar() {
     { key: 'contact', href: '#contact' },
   ];
 
-  const currentLang =
-    locales.find(l => l.code === currentLocale) || locales[0];
-
   /**
-   * 🎯 LOGIQUE DE CONTRASTE AUTOMATIQUE
-   * - header transparent => texte blanc
-   * - header scroll => texte sombre
-   * - garantit visibilité sur tous backgrounds
+   * 🧠 NEUROSCIENCE DESIGN SYSTEM LOGIC
    */
-  const textColor = scrolled ? 'text-[#2f2b28]' : 'text-white';
-  const subTextColor = scrolled ? 'text-[#4A4A4A]' : 'text-white/90';
-  const hoverColor = scrolled ? 'hover:text-[#6B9AC4]' : 'hover:text-[#A8D5BA]';
+  const isElevated = scrolled || isDark;
 
   return (
     <header
       className={`
         fixed top-0 w-full z-50 transition-all duration-300
+
         ${scrolled
-          ? 'bg-[#F5F1EB]/80 backdrop-blur-xl shadow-md border-b border-white/20'
+          ? 'bg-white/60 dark:bg-black/40 backdrop-blur-2xl shadow-md border-b border-white/10'
           : 'bg-transparent'
         }
       `}
@@ -66,29 +64,29 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
         {/* LOGO */}
-        <a href="#" className="flex items-center gap-3 group">
-          <img
-            src="/images/logo.png"
-            alt="Amanda Mind Care"
-            className="h-10 w-10 object-contain transition-transform group-hover:scale-110"
-          />
-
-          <span className={`font-serif text-xl tracking-wide transition-colors ${textColor}`}>
+        <a href="#" className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#6B9AC4] to-cyan-400 blur-[0.5px]" />
+          <span className="font-serif text-xl text-white dark:text-white">
             Amanda Mind Care
           </span>
         </a>
 
-        {/* NAV DESKTOP */}
+        {/* NAV */}
         <nav className="hidden md:flex items-center gap-8 text-sm">
           {navItems.map(item => (
             <a
               key={item.key}
               href={item.href}
-              className={`relative transition-colors duration-300 ${textColor} ${hoverColor}`}
+              className="
+                relative text-white/80 hover:text-cyan-300
+                transition-colors duration-300
+              "
             >
               {t(item.key)}
-
-              <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-current transition-all duration-300 hover:w-full"></span>
+              <span className="
+                absolute left-0 -bottom-1 h-[1px] w-0
+                bg-cyan-300 transition-all hover:w-full
+              " />
             </a>
           ))}
         </nav>
@@ -96,23 +94,36 @@ export default function Navbar() {
         {/* ACTIONS */}
         <div className="flex items-center gap-3">
 
-          {/* LANGUAGE DROPDOWN */}
+          {/* THEME */}
+          <button
+            onClick={toggleTheme}
+            className="
+              p-2 rounded-full
+              bg-white/10 backdrop-blur-xl
+              border border-white/10
+              hover:bg-white/20 transition
+            "
+          >
+            {isDark ? (
+              <Sun size={18} className="text-yellow-300" />
+            ) : (
+              <Moon size={18} className="text-white" />
+            )}
+          </button>
+
+          {/* LANGUAGE */}
           <div className="relative hidden md:block">
             <button
               onClick={() => setLangOpen(!langOpen)}
-              className={`
+              className="
                 flex items-center gap-2 px-4 py-2 rounded-full
-                backdrop-blur-xl border transition
-                ${scrolled
-                  ? 'bg-white/60 text-[#2f2b28] border-gray-200'
-                  : 'bg-white/10 text-white border-white/20'
-                }
-              `}
+                bg-white/10 backdrop-blur-xl
+                border border-white/10
+                text-white
+              "
             >
               <span>{currentLang.flag}</span>
-              <span className="font-medium">
-                {currentLang.code.toUpperCase()}
-              </span>
+              <span>{currentLang.code.toUpperCase()}</span>
             </button>
 
             <AnimatePresence>
@@ -123,9 +134,9 @@ export default function Navbar() {
                   exit={{ opacity: 0, scale: 0.95, y: 10 }}
                   className="
                     absolute right-0 mt-3 w-52
-                    bg-white/90 backdrop-blur-2xl
-                    border border-gray-200
-                    rounded-2xl shadow-xl overflow-hidden
+                    bg-black/60 backdrop-blur-2xl
+                    border border-white/10
+                    rounded-2xl overflow-hidden
                   "
                 >
                   {locales.map(l => (
@@ -135,18 +146,13 @@ export default function Navbar() {
                         changeLanguage(l.code);
                         setLangOpen(false);
                       }}
-                      className={`
-                        flex items-center gap-3 w-full px-4 py-3 text-sm
-                        hover:bg-gray-100 transition
-                        ${currentLocale === l.code ? 'bg-gray-100 font-semibold' : ''}
-                      `}
+                      className="
+                        w-full flex items-center gap-3 px-4 py-3
+                        text-white hover:bg-white/10 transition
+                      "
                     >
-                      <span className="text-lg">{l.flag}</span>
+                      <span>{l.flag}</span>
                       <span>{l.label}</span>
-
-                      {currentLocale === l.code && (
-                        <span className="ml-auto w-2 h-2 rounded-full bg-[#6B9AC4]" />
-                      )}
                     </button>
                   ))}
                 </motion.div>
@@ -156,21 +162,24 @@ export default function Navbar() {
 
           {/* CTA */}
           <button
-            className={`
-              hidden md:block px-5 py-2 rounded-full shadow-sm transition
-              ${scrolled
-                ? 'bg-[#6B9AC4] text-white hover:bg-[#A8D5BA]'
-                : 'bg-white/10 text-white border border-white/20 hover:bg-white/20'
-              }
-            `}
+            className="
+              hidden md:block px-5 py-2 rounded-full
+              bg-gradient-to-r from-[#6B9AC4] to-cyan-400
+              text-white shadow-lg shadow-cyan-500/20
+              hover:scale-[1.03] transition
+            "
           >
             {t('cta')}
           </button>
 
           {/* MOBILE */}
-          <button className={`md:hidden text-2xl p-2 ${textColor}`} onClick={() => setOpen(true)}>
+          <button
+            className="md:hidden text-2xl text-white"
+            onClick={() => setOpen(true)}
+          >
             ☰
           </button>
+
         </div>
       </div>
 
@@ -181,24 +190,32 @@ export default function Navbar() {
             initial={{ x: '-100%' }}
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
-            className="fixed inset-0 bg-[#1f1d1a]/95 backdrop-blur-xl z-50 flex flex-col p-8"
+            className="
+              fixed inset-0 z-50 flex flex-col p-8
+              bg-black/95 backdrop-blur-2xl text-white
+            "
           >
-            <div className="flex justify-between items-center mb-10 text-white">
-              <span className="font-serif text-lg">Amanda Mind Care</span>
+            <div className="flex justify-between items-center mb-10">
+              <span className="font-serif text-lg">
+                Amanda Mind Care
+              </span>
               <button onClick={() => setOpen(false)} className="text-2xl">
                 ✕
               </button>
             </div>
 
-            <div className="flex flex-col gap-6 text-white text-lg">
-              {navItems.map(item => (
-                <a key={item.key} href={item.href} onClick={() => setOpen(false)}>
-                  {t(item.key)}
-                </a>
-              ))}
-            </div>
+            {navItems.map(item => (
+              <a
+                key={item.key}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="py-3 text-lg text-white/80 hover:text-cyan-300"
+              >
+                {t(item.key)}
+              </a>
+            ))}
 
-            <div className="mt-8 flex flex-col gap-3 text-white">
+            <div className="mt-10 space-y-3">
               {locales.map(l => (
                 <button
                   key={l.code}
@@ -215,7 +232,11 @@ export default function Navbar() {
             </div>
 
             <div className="mt-auto">
-              <button className="w-full bg-[#6B9AC4] py-3 rounded-full text-white">
+              <button className="
+                w-full py-3 rounded-full
+                bg-gradient-to-r from-[#6B9AC4] to-cyan-400
+                text-white
+              ">
                 {t('cta')}
               </button>
             </div>
