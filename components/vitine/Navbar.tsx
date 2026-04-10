@@ -183,66 +183,89 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
+      {/* MOBILE MENU - FOOTER STYLE TRUST ZONE */}
+<AnimatePresence>
+  {open && (
+    <motion.div
+      initial={{ x: '-100%' }}
+      animate={{ x: 0 }}
+      exit={{ x: '-100%' }}
+      className="
+        fixed inset-0 z-50 flex flex-col p-8
+        bg-[#070A0F] text-white
+        overflow-hidden
+      "
+    >
+      {/* GLOW LIKE FOOTER */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute w-[500px] h-[500px] bg-[#6B9AC4]/20 blur-[160px] top-[-150px] left-[-150px]" />
+        <div className="absolute w-[400px] h-[400px] bg-[#A8D5BA]/10 blur-[140px] bottom-[-150px] right-[-150px]" />
+      </div>
+
+      {/* HEADER */}
+      <div className="relative flex justify-between items-center mb-10">
+        <span className="font-serif text-lg">
+          Amanda Mind Care
+        </span>
+
+        <button
+          onClick={() => setOpen(false)}
+          className="text-2xl text-white/80 hover:text-white"
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* NAV ITEMS */}
+      <div className="relative flex flex-col gap-6">
+        {navItems.map(item => (
+          <a
+            key={item.key}
+            href={item.href}
+            onClick={() => setOpen(false)}
             className="
-              fixed inset-0 z-50 flex flex-col p-8
-              bg-black/95 backdrop-blur-2xl text-white
+              text-lg text-white/70
+              hover:text-white transition
             "
           >
-            <div className="flex justify-between items-center mb-10">
-              <span className="font-serif text-lg">
-                Amanda Mind Care
-              </span>
-              <button onClick={() => setOpen(false)} className="text-2xl">
-                ✕
-              </button>
-            </div>
+            {t(item.key)}
+          </a>
+        ))}
+      </div>
 
-            {navItems.map(item => (
-              <a
-                key={item.key}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="py-3 text-lg text-white/80 hover:text-cyan-300"
-              >
-                {t(item.key)}
-              </a>
-            ))}
+      {/* LANGUAGES */}
+      <div className="relative mt-12 space-y-3">
+        {locales.map(l => (
+          <button
+            key={l.code}
+            onClick={() => {
+              changeLanguage(l.code);
+              setOpen(false);
+            }}
+            className="
+              flex items-center gap-3 text-white/70
+              hover:text-white transition
+            "
+          >
+            <span>{l.flag}</span>
+            <span>{l.label}</span>
+          </button>
+        ))}
+      </div>
 
-            <div className="mt-10 space-y-3">
-              {locales.map(l => (
-                <button
-                  key={l.code}
-                  onClick={() => {
-                    changeLanguage(l.code);
-                    setOpen(false);
-                  }}
-                  className="flex items-center gap-3 text-lg"
-                >
-                  <span>{l.flag}</span>
-                  <span>{l.label}</span>
-                </button>
-              ))}
-            </div>
-
-            <div className="mt-auto">
-              <button className="
-                w-full py-3 rounded-full
-                bg-gradient-to-r from-[#6B9AC4] to-cyan-400
-                text-white
-              ">
-                {t('cta')}
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* CTA BOTTOM */}
+      <div className="relative mt-auto">
+        <button className="
+          w-full py-3 rounded-full
+          bg-gradient-to-r from-[#6B9AC4] to-[#A8D5BA]
+          text-white shadow-lg
+        ">
+          {t('cta')}
+        </button>
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
     </header>
   );
 }
