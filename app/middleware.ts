@@ -1,46 +1,83 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getPreferredLocale } from "../lib/getPreferredLocale";
+// middleware.ts
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { createServerClient } from '@supabase/ssr';
 
-const locales = ["fr", "en", "rw", "es"];
+export async function middleware(req: NextRequest) {
+  let res = NextResponse.next();
 
-export function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
-
-  // ignore assets
-  if (
-    pathname.startsWith("/_next") ||
-    pathname.includes(".") ||
-    pathname.startsWith("/api")
-  ) {
-    return NextResponse.next();
-  }
-
-  // check locale already exists
-  const pathnameLocale = pathname.split("/")[1];
-
-  if (locales.includes(pathnameLocale)) {
-    return NextResponse.next();
-  }
-
-  // detect browser language
-  const acceptLanguage = req.headers.get("accept-language");
-
-  const locale = getPreferredLocale(
-    acceptLanguage,
-    req.cookies.get("locale")?.value
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name) {
+          return req.cookies.get(name)?.value;
+        },
+        set(name, value, options) {
+          res.cookies.set(name, value, options);
+        },
+        remove(name, options) {
+          res.cookies.set(name, '', options);
+        },
+      },
+    }
   );
 
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   const url = req.nextUrl.clone();
-  url.pathname = `/${locale}${pathname}`;
 
-  const res = NextResponse.redirect(url);
+  // =========================
+  // NO USER
+  // =========================
+  if (!user) {
+    url.pathname = '/login';
+    return NextResponse.redirect(url);
+  }
 
-  // persist cookie
-  res.cookies.set("locale", locale);
+  // =========================
+  // PROFILE
+  // =========================
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('role, is_active, is_blocked')
+    .eq('id', user.id)
+    .maybeSingle();
+
+  if (!profile || !profile.is_active || profile.is_blocked) {
+    url.pathname = '/blocked';
+    return NextResponse.redirect(url);
+  }
+
+  const role = profile.role;
+
+  // =========================
+  // ROLE GUARD
+  // =========================
+  if (url.pathname.startsWith('/admin') && role !== 'admin') {
+    url.pathname = '/unauthorized';
+    return NextResponse.redirect(url);
+  }
+
+  if (url.pathname.startsWith('/therapist') && role !== 'therapist') {
+    url.pathname = '/unauthorized';
+    return NextResponse.redirect(url);
+  }
+
+  if (url.pathname.startsWith('/patient') && role !== 'patient') {
+    url.pathname = '/unauthorized';
+    return NextResponse.redirect(url);
+  }
 
   return res;
 }
 
+// =========================
+// MATCHER PROPRE
+// =========================
 export const config = {
-  matcher: ["/((?!_next|api|.*\\..*).*)"]
+  matcher: ['/admin/:path*', '/therapist/:path*', '/patient/:path*'],
 };

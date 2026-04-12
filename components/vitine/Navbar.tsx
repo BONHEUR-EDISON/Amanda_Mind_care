@@ -8,12 +8,15 @@ import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/hooks/useTheme';
 import { locales } from '@/lib/locales';
 import Image from 'next/image';
+import { supabase } from '@/lib/supabase';
+import { getUserSafe } from '@/lib/auth/getUserSafe'; // 🔥 FIX IMPORTANT
 
 export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [user, setUser] = useState<any>(null);
 
   const langRef = useRef<HTMLDivElement>(null);
 
@@ -26,6 +29,48 @@ export default function Navbar() {
 
   useEffect(() => setMounted(true), []);
 
+  // =========================
+  // 🔐 SAFE AUTH (NO SUPABASE LOCK)
+  // =========================
+  useEffect(() => {
+    let mounted = true;
+
+    const loadUser = async () => {
+      const u = await getUserSafe(); // ✅ SAFE CALL
+
+      if (mounted) {
+        setUser(u);
+      }
+    };
+
+    loadUser();
+
+    // ⚠️ LISTENER SAFE (NO getUser HERE)
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        if (mounted) {
+          setUser(session?.user ?? null);
+        }
+      }
+    );
+
+    return () => {
+      mounted = false;
+      listener.subscription.unsubscribe();
+    };
+  }, []);
+
+  // =========================
+  // LOGOUT
+  // =========================
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push('/');
+  };
+
+  // =========================
+  // LANGUAGE
+  // =========================
   const currentLocale = pathname.split('/')[1] || 'fr';
 
   const currentLang =
@@ -38,7 +83,9 @@ export default function Navbar() {
     localStorage.setItem('lang', locale);
   };
 
-  // Scroll propre
+  // =========================
+  // SCROLL EFFECT
+  // =========================
   useEffect(() => {
     let ticking = false;
 
@@ -56,7 +103,9 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Click outside
+  // =========================
+  // OUTSIDE CLICK LANG MENU
+  // =========================
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (langRef.current && !langRef.current.contains(e.target as Node)) {
@@ -68,12 +117,16 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Bloquer scroll mobile menu
+  // =========================
+  // MOBILE SCROLL LOCK
+  // =========================
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : 'auto';
   }, [open]);
 
-  // ESC close
+  // =========================
+  // ESC CLOSE
+  // =========================
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -99,22 +152,14 @@ export default function Navbar() {
       className={`
         fixed top-0 w-full z-[120]
         transition-all duration-300
-
-        /* 🌿 BASE CLAIRE DOUCE */
         bg-[#F8FAFC]
-
-        /* 💻 GLASS DOUX */
         md:bg-[#F8FAFC]/80
-
-        ${scrolled
-          ? 'shadow-sm border-b border-gray-200 backdrop-blur-xl'
-          : ''
-        }
+        ${scrolled ? 'shadow-sm border-b border-gray-200 backdrop-blur-xl' : ''}
       `}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
-        {/* LOGO */}
+        {/* ================= LOGO ================= */}
         <a href="#" className="flex items-center gap-3">
           <div className="relative w-10 h-10">
             <Image
@@ -131,28 +176,26 @@ export default function Navbar() {
           </span>
         </a>
 
-        {/* NAV DESKTOP */}
+        {/* ================= NAV DESKTOP ================= */}
         <nav className="hidden md:flex items-center gap-8 text-sm">
           {navItems.map(item => (
             <a
               key={item.key}
               href={item.href}
-              className="relative text-gray-700 hover:text-[#6B9AC4] transition"
+              className="relative text-gray-700 hover:text-[#6B9AC4]"
             >
               {t(item.key)}
-
-              <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-[#6B9AC4] transition-all hover:w-full" />
             </a>
           ))}
         </nav>
 
-        {/* ACTIONS */}
+        {/* ================= ACTIONS ================= */}
         <div className="flex items-center gap-3">
 
           {/* THEME */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full bg-white border border-gray-200 hover:scale-110 transition"
+            className="p-2 rounded-full bg-white border border-gray-200"
           >
             {isDark ? (
               <Sun size={18} className="text-yellow-500" />
@@ -165,7 +208,7 @@ export default function Navbar() {
           <div ref={langRef} className="relative hidden md:block">
             <button
               onClick={() => setLangOpen(prev => !prev)}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-700"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200"
             >
               <span>{currentLang.flag}</span>
               <span>{currentLang.code.toUpperCase()}</span>
@@ -197,127 +240,101 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          {/* CTA */}
-          <button className="hidden md:block px-5 py-2 rounded-full bg-[#6B9AC4] text-white shadow-sm hover:bg-[#5a89b2] transition">
-            {t('cta')}
-          </button>
+          {/* AUTH DESKTOP */}
+          {!user ? (
+            <>
+              <button onClick={() => router.push('/login')} className="hidden md:block">
+                Login
+              </button>
 
-          {/* MOBILE BTN */}
+              <button onClick={() => router.push('/signup')} className="hidden md:block">
+                Sign up
+              </button>
+            </>
+          ) : (
+            <>
+              <button onClick={() => router.push('/patient')} className="hidden md:block">
+                Dashboard
+              </button>
+
+              <button onClick={handleLogout} className="hidden md:block">
+                Logout
+              </button>
+            </>
+          )}
+
+          {/* MOBILE MENU BTN */}
           <button
-            className="md:hidden text-2xl text-gray-800"
+            className="md:hidden text-2xl"
             onClick={() => setOpen(true)}
           >
             ☰
           </button>
-
         </div>
       </div>
 
-      {/* MOBILE MENU */}
-     <AnimatePresence>
-  {open && (
-    <>
-      {/* BACKDROP SOLIDE (cache totalement la page) */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[299] bg-[#EAF0F6]"
-      />
+      {/* ================= MOBILE MENU ================= */}
+      <AnimatePresence>
+        {open && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[299] bg-[#EAF0F6]"
+            />
 
-      {/* MENU PANEL */}
-      <motion.div
-        initial={{ x: '-100%' }}
-        animate={{ x: 0 }}
-        exit={{ x: '-100%' }}
-        transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="
-          fixed inset-0 z-[300]
-          flex flex-col
-          bg-[#F8FAFC]
-          text-[#0B0F14]
-          p-8
-        "
-      >
-
-        {/* HEADER */}
-        <div className="flex justify-between items-center mb-10">
-          <span className="font-serif text-lg text-[#0B0F14]">
-            Aurion Mental Health Clinic
-          </span>
-
-          <button
-            onClick={() => setOpen(false)}
-            className="text-2xl text-gray-700"
-          >
-            ✕
-          </button>
-        </div>
-
-        {/* NAV */}
-        <div className="flex flex-col gap-6">
-          {navItems.map(item => (
-            <a
-              key={item.key}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="
-                text-lg
-                text-gray-700
-                hover:text-[#6B9AC4]
-                transition
-              "
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ duration: 0.35 }}
+              className="fixed inset-0 z-[300] flex flex-col bg-[#F8FAFC] p-8"
             >
-              {t(item.key)}
-            </a>
-          ))}
-        </div>
+              <div className="flex justify-between mb-10">
+                <span className="font-serif">Aurion Mental Health Clinic</span>
+                <button onClick={() => setOpen(false)}>✕</button>
+              </div>
 
-        {/* DIVIDER */}
-        <div className="my-10 border-t border-gray-200" />
+              <div className="flex flex-col gap-6">
+                {navItems.map(item => (
+                  <a
+                    key={item.key}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                  >
+                    {t(item.key)}
+                  </a>
+                ))}
+              </div>
 
-        {/* LANGUAGE */}
-        <div className="flex flex-col gap-3">
-          {locales.map(l => (
-            <button
-              key={l.code}
-              onClick={() => {
-                changeLanguage(l.code);
-                setOpen(false);
-              }}
-              className="
-                flex items-center gap-3
-                text-gray-600
-                hover:text-[#6B9AC4]
-                transition
-              "
-            >
-              <span>{l.flag}</span>
-              <span>{l.label}</span>
-            </button>
-          ))}
-        </div>
+              <div className="mt-10 flex flex-col gap-3">
+                {!user ? (
+                  <>
+                    <button onClick={() => router.push('/login')} className="py-3 border rounded-full">
+                      Login
+                    </button>
 
-        {/* CTA BOTTOM FIXED */}
-        <div className="mt-auto pt-10">
-          <button className="
-            w-full py-3
-            rounded-full
-            bg-[#6B9AC4]
-            text-white
-            font-medium
-            shadow-sm
-            hover:bg-[#5a89b2]
-            transition
-          ">
-            {t('cta')}
-          </button>
-        </div>
+                    <button onClick={() => router.push('/signup')} className="py-3 bg-[#6B9AC4] text-white rounded-full">
+                      Sign up
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button onClick={() => router.push('/patient')} className="py-3 border rounded-full">
+                      Dashboard
+                    </button>
 
-      </motion.div>
-    </>
-  )}
-</AnimatePresence>
+                    <button onClick={handleLogout} className="py-3 bg-red-500 text-white rounded-full">
+                      Logout
+                    </button>
+                  </>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

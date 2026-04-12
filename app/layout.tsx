@@ -1,34 +1,34 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+
 import "./globals.css";
-
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import AutoLogoutProvider from "@/components/AutoLogoutProvider";
 
 export const metadata: Metadata = {
   title: "Aurion Mental Health Clinic - Espace Privé de Psychologie",
-  description: "Un accompagnement confidentiel et professionnel pour votre équilibre mental",
+  description:
+    "Un accompagnement confidentiel et professionnel pour votre équilibre mental",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        
+        {/* 🔐 AUTO LOGOUT GLOBAL */}
+        <AutoLogoutProvider>
+          {children}
+        </AutoLogoutProvider>
+
+      </body>
     </html>
   );
 }
